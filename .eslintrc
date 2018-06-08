@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true,
+    "webextensions": true,
+    "jquery": true
+  },
+  "extends": [
+    "standard"
+  ],
+  "rules": {
+    "arrow-parens": [2, "as-needed"]
+  }
+}
