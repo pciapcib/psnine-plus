@@ -3,7 +3,8 @@ import qs from 'qs'
 const filterMap = {
   all: '全部',
   missing: '未获得',
-  earned: '已获得'
+  earned: '已获得',
+  tips: '有tips'
 }
 
 function makeFilterItem (type, query, filter) {
@@ -30,10 +31,11 @@ function makeFilter (query) {
     })
 
   const $all = makeFilterItem('all', query, filter)
-  const $missing = makeFilterItem('missing', query, filter)
   const $earned = makeFilterItem('earned', query, filter)
+  const $missing = makeFilterItem('missing', query, filter)
+  const $tips = makeFilterItem('tips', query, filter)
 
-  const $dropdownItems = $('<ul></ul>').append($all, $missing, $earned)
+  const $dropdownItems = $('<ul></ul>').append($all, $earned, $missing, $tips)
 
   $dropdown.append($dropdownItems)
 
@@ -47,6 +49,8 @@ export default function filterTrophies (query) {
   const $trophies = $main.find('tr[id]')
   const $earned = $trophies.has('img.earned')
   const $missing = $trophies.not($earned)
+  const $tips = $trophies.has('td:eq(1) em.alert-success')
+  const $noTips = $trophies.not($tips)
 
   const $dropmenu = $main.find('.dropmenu')
   const $filterTitle = $('<li><em>过滤</em></li>')
@@ -59,12 +63,20 @@ export default function filterTrophies (query) {
 
   switch (filter) {
     case 'earned':
+      $earned.show()
       $missing.hide()
 
       break
 
     case 'missing':
+      $missing.show()
       $earned.hide()
+
+      break
+
+    case 'tips':
+      $tips.show()
+      $noTips.hide()
 
       break
   }
