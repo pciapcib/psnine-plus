@@ -1,15 +1,15 @@
-import qs from 'qs'
+import controller from './controller'
+import {
+  filterTrophies
+} from './services'
 
-import match from './match'
-import filterTrophies from './filter-trophies'
-
-const pathMap = {
-  '/psngame/:id': filterTrophies
+// TODO: 增加用户小卡片
+const router = {
+  '/psngame/:gameId': filterTrophies
 }
 
 $(function () {
-  const query = qs.parse(window.location.search, { ignoreQueryPrefix: true })
-  const pathname = window.location.pathname
+  const { pathname, search } = window.location
 
-  match(pathMap, pathname, query)
+  controller(router, pathname, search)
 })

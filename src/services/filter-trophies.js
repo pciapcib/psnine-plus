@@ -42,7 +42,7 @@ function makeFilter (query) {
   return $dropdown
 }
 
-export default function filterTrophies (query) {
+export default function filterTrophies (params, query) {
   if (!query.psnid) return
 
   const $main = $('.mt40 .main')
