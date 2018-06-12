@@ -20,7 +20,8 @@ module.exports = {
         'transform-runtime',
         'transform-class-properties',
         'transform-decorators-legacy',
-        'transform-object-rest-spread'
+        'transform-object-rest-spread',
+        'ramda'
       ],
       babelrc: false,
       exclude: 'node_modules/**'

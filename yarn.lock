@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@babel/helper-module-imports@^7.0.0-beta.40":
+  version "7.0.0-beta.49"
+  resolved "http://registry.npm.taobao.org/@babel/helper-module-imports/download/@babel/helper-module-imports-7.0.0-beta.49.tgz#41d7d59891016c493432a46f7464446552890c75"
+  dependencies:
+    "@babel/types" "7.0.0-beta.49"
+    lodash "^4.17.5"
+
+"@babel/types@7.0.0-beta.49":
+  version "7.0.0-beta.49"
+  resolved "http://registry.npm.taobao.org/@babel/types/download/@babel/types-7.0.0-beta.49.tgz#b7e3b1c3f4d4cfe11bdf8c89f1efd5e1617b87a6"
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.5"
+    to-fast-properties "^2.0.0"
+
 acorn-jsx@^3.0.0:
   version "3.0.1"
   resolved "http://registry.npm.taobao.org/acorn-jsx/download/acorn-jsx-3.0.1.tgz#afdf9488fb1ecefc8348f6fb22f464e32a58b36b"
@@ -388,6 +403,13 @@ babel-plugin-external-helpers@^6.22.0:
   resolved "http://registry.npm.taobao.org/babel-plugin-external-helpers/download/babel-plugin-external-helpers-6.22.0.tgz#2285f48b02bd5dede85175caf8c62e86adccefa1"
   dependencies:
     babel-runtime "^6.22.0"
+
+babel-plugin-ramda@^1.6.1:
+  version "1.6.1"
+  resolved "http://registry.npm.taobao.org/babel-plugin-ramda/download/babel-plugin-ramda-1.6.1.tgz#600efdcc2fe85620a6619cbccbd491f8699272e8"
+  dependencies:
+    "@babel/helper-module-imports" "^7.0.0-beta.40"
+    ramda "0.x"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
@@ -2478,7 +2500,7 @@ lodash@3.3.0:
   version "3.3.0"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-3.3.0.tgz#011ce52d01b14e60eaeea76acb9b8ba42c70581b"
 
-lodash@^4.17.10, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.8.0:
+lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.8.0:
   version "4.17.10"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -2949,6 +2971,10 @@ pseudomap@^1.0.2:
 qs@^6.5.2:
   version "6.5.2"
   resolved "http://registry.npm.taobao.org/qs/download/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
+
+ramda@0.x, ramda@^0.25.0:
+  version "0.25.0"
+  resolved "http://registry.npm.taobao.org/ramda/download/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
 
 randomatic@^3.0.0:
   version "3.0.0"
@@ -3506,6 +3532,10 @@ to-buffer@^1.1.0:
 to-fast-properties@^1.0.3:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/to-fast-properties/download/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
+
+to-fast-properties@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/to-fast-properties/download/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
 
 to-object-path@^0.3.0:
   version "0.3.0"

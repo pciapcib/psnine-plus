@@ -1,9 +1,10 @@
 import qs from 'qs'
+import R from 'ramda'
 
 const filterMap = {
   all: '全部',
-  missing: '未获得',
   earned: '已获得',
+  missing: '未获得',
   tips: '有tips'
 }
 
@@ -21,34 +22,53 @@ function makeFilterItem (type, query, filter) {
 }
 
 function makeFilter (query) {
-  const filter = query.filter || 'all'
-  const filterText = filterMap[filter] || filterMap['all']
+  const validFilterMap = query.psnid ? filterMap : R.omit(['earned', 'missing'])(filterMap)
 
-  const $dropdown = $('<li class="dropdown"></li>')
-    .append(`<a href="javascript:void(0)" class="arr-down">${filterText}</a>`)
+  const filter = query.filter || 'all'
+  const filterText = validFilterMap[filter] || validFilterMap['all']
+
+  const $filterDropdown = $(`
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="arr-down">${filterText}</a>
+    </li>
+  `)
     .hover(function () {
       $(this).toggleClass('hover')
     })
 
-  const $all = makeFilterItem('all', query, filter)
-  const $earned = makeFilterItem('earned', query, filter)
-  const $missing = makeFilterItem('missing', query, filter)
-  const $tips = makeFilterItem('tips', query, filter)
+  const getFilterItem = type => makeFilterItem(type, query, filter)
+  const filterItems = R.pipe(R.keys, R.map(getFilterItem))(validFilterMap)
 
-  const $dropdownItems = $('<ul></ul>').append($all, $earned, $missing, $tips)
+  const $filterItems = $('<ul></ul>').append(filterItems)
 
-  $dropdown.append($dropdownItems)
+  $filterDropdown.append($filterItems)
 
-  return $dropdown
+  return $filterDropdown
+}
+
+function addPlaceHolder ($trophies, $content, img, msg) {
+  if ($trophies.length === 0) {
+    const $placeholder = $(`
+      <tr>
+        <td valign="top" align="center">
+        <img src="http://photo.psnine.com/face/${img}.gif" style="padding: 10px 0;">
+        <p>${msg}</p>
+        </td>
+      </tr>
+    `)
+
+    $content.append($placeholder)
+  }
 }
 
 export default function filterTrophies (params, query) {
-  if (!query.psnid) return
-
   const $main = $('.mt40 .main')
+
   const $trophies = $main.find('tr[id]')
+
   const $earned = $trophies.has('img.earned')
   const $missing = $trophies.not($earned)
+
   const $tips = $trophies.has('td:eq(1) em.alert-success')
   const $noTips = $trophies.not($tips)
 
@@ -58,25 +78,34 @@ export default function filterTrophies (params, query) {
 
   $dropmenu.append($filterTitle, $filterDropdown)
 
+  const $content = $dropmenu.next().find('tbody')
+
   const filter = query.filter || 'all'
   const ob = query.ob || 'trophyid'
 
   switch (filter) {
     case 'earned':
-      $earned.show()
+      if (!query.psnid) return
+
       $missing.hide()
+
+      addPlaceHolder($earned, $content, 'alu/30', '未获得任何奖杯')
 
       break
 
     case 'missing':
-      $missing.show()
+      if (!query.psnid) return
+
       $earned.hide()
+
+      addPlaceHolder($missing, $content, 'alu/35', '已获得全部奖杯')
 
       break
 
     case 'tips':
-      $tips.show()
       $noTips.hide()
+
+      addPlaceHolder($tips, $content, 'alu/36', '快来成为大佬')
 
       break
   }
