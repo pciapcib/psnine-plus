@@ -35,9 +35,16 @@ gulp.task('dist', ['build'], cb => {
 
 gulp.task('chrome', () => {
   return merge2(
-    pipe('./icons/**/*', './dist/chrome/icons'),
     rollup('rollup.config.js').on('error', $.util.log).pipe(source('psnine-plus.js')).pipe(gulp.dest('./dist/chrome/')),
-    pipe('./node_modules/jquery/dist/jquery.min.js', './dist/chrome/'),
+    pipe('./src/psnine-plus.styl', $.plumber(), $.stylus(), './dist/chrome'),
+
+    pipe([
+      './node_modules/jquery/dist/jquery.min.js',
+      './node_modules/tooltipster/dist/js/tooltipster.bundle.min.js',
+      './node_modules/tooltipster/dist/css/tooltipster.bundle.min.css'
+    ], './dist/chrome/'),
+    pipe('./icons/**/*', './dist/chrome/icons'),
+
     pipe('./src/config/chrome/background.js', $.plumber(), $.babel(), './dist/chrome/'),
     pipe('./src/config/chrome/manifest.json', $.replace('__VERSION__', pkg.version), './dist/chrome/')
   )

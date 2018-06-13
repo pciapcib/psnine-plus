@@ -13,6 +13,13 @@
     "url": "https://github.com/pciapcib/psnine-plus/issues"
   },
   "homepage": "https://github.com/pciapcib/psnine-plus",
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "path-to-regexp": "^2.2.1",
+    "qs": "^6.5.2",
+    "ramda": "^0.25.0",
+    "tooltipster": "^4.2.6"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^7.2.0",
@@ -38,6 +45,7 @@
     "gulp-plumber": "^1.2.0",
     "gulp-replace": "^1.0.0",
     "gulp-run-sequence": "^0.3.2",
+    "gulp-stylus": "^2.7.0",
     "gulp-util": "^3.0.8",
     "merge2": "^1.2.2",
     "rollup-plugin-babel": "^3.0.4",
@@ -45,11 +53,5 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-stream": "^1.24.1",
     "vinyl-source-stream": "^2.0.0"
-  },
-  "dependencies": {
-    "jquery": "^2.1.4",
-    "path-to-regexp": "^2.2.1",
-    "qs": "^6.5.2",
-    "ramda": "^0.25.0"
   }
 }
