@@ -7,12 +7,21 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   }, res => {
     if (chrome.runtime.lastError || res[0]) return
 
+    const cssFiles = [
+      './tooltipster.bundle.min.css',
+      './psnine-plus.css'
+    ]
+
     const jsFiles = [
       './jquery.min.js',
+      './tooltipster.bundle.min.js',
       './psnine-plus.js'
     ]
 
-    eachItem(jsFiles, inject(tabId, 'executeScript'))
+    eachTask([
+      cb => eachItem(cssFiles, inject(tabId, 'insertCSS'), cb),
+      cb => eachItem(jsFiles, inject(tabId, 'executeScript'), cb)
+    ])
   })
 })
 

@@ -10,7 +10,7 @@ const filterMap = {
 
 function makeFilterItem (type, query, filter) {
   const to = qs.stringify(Object.assign({}, query, { filter: type }), { addQueryPrefix: true })
-  const $link = $('<a></a>').text(filterMap[type]).attr('href', to)
+  const $link = $(`<a href="${to}">${filterMap[type]}</a>`)
 
   if (type === filter) {
     $link.addClass('current')
@@ -30,6 +30,7 @@ function makeFilter (query) {
   const $filterDropdown = $(`
     <li class="dropdown">
       <a href="javascript:void(0)" class="arr-down">${filterText}</a>
+      <ul></ul>
     </li>
   `)
     .hover(function () {
@@ -39,9 +40,7 @@ function makeFilter (query) {
   const getFilterItem = type => makeFilterItem(type, query, filter)
   const filterItems = R.pipe(R.keys, R.map(getFilterItem))(validFilterMap)
 
-  const $filterItems = $('<ul></ul>').append(filterItems)
-
-  $filterDropdown.append($filterItems)
+  $filterDropdown.find('ul').append(filterItems)
 
   return $filterDropdown
 }

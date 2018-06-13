@@ -1,10 +1,11 @@
 import controller from './controller'
 import {
+  hoverPSNCard,
   filterTrophies
 } from './services'
 
-// TODO: 增加用户小卡片
 const router = {
+  '/:page*': hoverPSNCard,
   '/psngame/:gameId': filterTrophies
 }
 
