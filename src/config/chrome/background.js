@@ -1,6 +1,12 @@
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status !== 'loading') return
 
+  if (tab.url.indexOf('psnine.com') === -1) {
+    chrome.browserAction.disable(tabId)
+
+    return
+  }
+
   chrome.tabs.executeScript(tabId, {
     code: 'var injected = window.psninePlusInjected; window.psninePlusInjected = true; injected;',
     runAt: 'document_start'
