@@ -18,10 +18,6 @@
     },
     "default_title": "Psnine Plus"
   },
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
   "content_scripts": [
     {
       "matches": [
