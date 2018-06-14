@@ -20,7 +20,7 @@ export default function hoverPSNCard (params, query) {
       const url = $el.attr('href')
 
       if (cache[url]) {
-        $el.tooltipster('content', cache[url])
+        self.content(cache[url])
       } else {
         $.ajax({
           method: 'GET',
