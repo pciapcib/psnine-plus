@@ -1,7 +1,9 @@
+import { PSNINE_DOMAIN } from '../constants'
+
 export default function hoverPSNCard (params, query) {
   const cache = {}
 
-  const $psnLinks = $('body > div:not(.header) a[href*="//psnine.com/psnid/"]')
+  const $psnLinks = $(`body > div:not(.header) a[href*="//${PSNINE_DOMAIN}/psnid/"]`)
 
   $psnLinks.tooltipster({
     debug: false,
