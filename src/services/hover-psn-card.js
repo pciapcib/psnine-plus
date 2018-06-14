@@ -5,7 +5,7 @@ export default function hoverPSNCard (params, query) {
 
   $psnLinks.tooltipster({
     debug: false,
-    theme: ['psnine-plus'],
+    theme: ['psnine-plus-psn-card'],
     content: '',
     contentAsHTML: true,
     arrow: false,
