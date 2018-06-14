@@ -50,7 +50,7 @@ function addPlaceHolder ($trophies, $content, img, msg) {
     const $placeholder = $(`
       <tr>
         <td valign="top" align="center">
-        <img src="http://photo.psnine.com/face/${img}.gif" style="padding: 10px 0;">
+        <img src="//photo.psnine.com/face/${img}.gif" style="padding: 10px 0;">
         <p>${msg}</p>
         </td>
       </tr>
@@ -72,7 +72,7 @@ export default function filterTrophies (params, query) {
   const $noTips = $trophies.not($tips)
 
   const $dropmenu = $main.find('.dropmenu')
-  const $filterTitle = $('<li><em>过滤</em></li>')
+  const $filterTitle = $('<li><em>筛选</em></li>')
   const $filterDropdown = makeFilter(query)
 
   $dropmenu.append($filterTitle, $filterDropdown)

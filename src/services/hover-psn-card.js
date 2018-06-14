@@ -1,7 +1,7 @@
 export default function hoverPSNCard (params, query) {
   const cache = {}
 
-  const $psnLinks = $('body > div:not(.header) a[href^="http://psnine.com/psnid/"]')
+  const $psnLinks = $('body > div:not(.header) a[href*="//psnine.com/psnid/"]')
 
   $psnLinks.tooltipster({
     debug: false,
