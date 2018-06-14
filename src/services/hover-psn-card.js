@@ -1,8 +1,10 @@
 import { PSNINE_DOMAIN } from '../constants'
 
+// 悬浮 PSN 卡片
 export default function hoverPSNCard (params, query) {
   const cache = {}
 
+  // 排除头部导航栏的个人主页
   const $psnLinks = $(`body > div:not(.header) a[href*="//${PSNINE_DOMAIN}/psnid/"]`)
 
   $psnLinks.tooltipster({

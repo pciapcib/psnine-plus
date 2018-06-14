@@ -4,6 +4,9 @@ import {
   filterTrophies
 } from './services'
 
+// 根据路由分配功能函数
+// 1. '/:page': service
+// 2. '/page/:id': [service1, service2]
 const router = {
   '/:page*': hoverPSNCard,
   '/psngame/:gameId': filterTrophies

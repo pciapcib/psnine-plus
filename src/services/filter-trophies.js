@@ -24,6 +24,7 @@ function makeFilterItem (type, query, filter) {
 }
 
 function makeFilter (query) {
+  // 非用户入口的游戏页面不显示奖杯筛选
   const validFilterMap = query.psnid ? filterMap : R.omit(['earned', 'missing'])(filterMap)
 
   const filter = query.filter || 'all'
@@ -47,6 +48,7 @@ function makeFilter (query) {
   return $filterDropdown
 }
 
+// 添加占位内容
 function addPlaceHolder ($trophies, $content, img, msg) {
   if ($trophies.length === 0) {
     const $placeholder = $(`
@@ -62,6 +64,7 @@ function addPlaceHolder ($trophies, $content, img, msg) {
   }
 }
 
+// 过滤游戏页面奖杯
 export default function filterTrophies (params, query) {
   const $main = $('.mt40 .main')
 
@@ -84,6 +87,7 @@ export default function filterTrophies (params, query) {
   const filter = query.filter || 'all'
   const ob = query.ob || 'trophyid'
 
+  // 非用户入口的游戏页面不显示奖杯筛选
   switch (filter) {
     case 'earned':
       if (!query.psnid) return
@@ -111,6 +115,9 @@ export default function filterTrophies (params, query) {
       break
   }
 
+  // 只在默认排序下进行游戏和 DLC 信息的判断，
+  // 游戏本体或某个 DLC 中的所有奖杯都隐藏时，
+  // 则隐藏对应的横幅信息
   if (ob === 'trophyid') {
     const $banners = $main.find('table.list tr:first-child')
 
