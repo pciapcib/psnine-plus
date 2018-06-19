@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/pciapcib/psnine-plus",
   "dependencies": {
-    "jquery": "^2.1.4",
+    "jquery": "^3.3.0",
     "path-to-regexp": "^2.2.1",
     "qs": "^6.5.2",
     "ramda": "^0.25.0",
