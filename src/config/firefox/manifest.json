@@ -10,7 +10,8 @@
   },
   "permissions": [
     "tabs",
-    "*://psnine.com/*"
+    "*://psnine.com/*",
+    "*://*.psnine.com/*"
   ],
   "browser_action": {
     "default_icon": {
@@ -21,7 +22,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://psnine.com/*"
+        "*://psnine.com/*",
+        "*://*.psnine.com/*"
       ],
       "js": [
         "./jquery.min.js",
