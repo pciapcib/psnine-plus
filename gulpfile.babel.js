@@ -35,7 +35,7 @@ gulp.task('default', ['dev'], () => {
 
 // production
 gulp.task('dist', ['build'], cb => {
-  $.runSequence('chrome:crx', 'chrome:zip', 'firefox:zip', 'opera:nex', cb)
+  $.runSequence('chrome:crx', 'chrome:zip', 'firefox:zip', 'opera:nex', 'psnine-plus:crx', cb)
 })
 
 gulp.task('styles', () => {
@@ -108,6 +108,11 @@ gulp.task('opera', ['chrome'], () => {
 
 gulp.task('opera:nex', () => {
   return pipe('./dist/chrome.crx', $.rename('opera.nex'), './dist')
+})
+
+// Psnine Plus:crx
+gulp.task('psnine-plus:crx', () => {
+  return pipe('./dist/chrome.crx', $.rename('psnine-plus.crx'), './dist')
 })
 
 // Helpers
