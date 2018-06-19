@@ -1,16 +1,22 @@
+import R from 'ramda'
 import pathToRegexp from 'path-to-regexp'
 import qs from 'qs'
 
 export default function controller (router, pathname, search) {
-  for (const path in router) {
+  // 区分黑白路径
+  const paths = R.keys(router)
+  const whitePaths = R.reject(R.startsWith('!'), paths)
+  const blackPaths = R.filter(R.startsWith('!'), paths)
+
+  whitePaths.forEach(whitePath => {
     const paramNames = []
-    const reg = pathToRegexp(path, paramNames)
+    const whitePathReg = pathToRegexp(whitePath, paramNames)
 
-    let pathFn = router[path]
+    let pathFns = router[whitePath]
 
-    if (reg.test(pathname) && pathFn) {
+    if (whitePathReg.test(pathname) && pathFns) {
       // '/page/:id' => '/page/233' => { id: '233' }
-      const captures = reg.exec(pathname).slice(1)
+      const captures = whitePathReg.exec(pathname).slice(1)
       const params = captures.reduce((params, capture, index) => {
         params[paramNames[index].name] = capture
         return params
@@ -19,11 +25,30 @@ export default function controller (router, pathname, search) {
       // '?psnid=233' => { psnid: '233' }
       const query = qs.parse(search, { ignoreQueryPrefix: true })
 
-      if (!Array.isArray(pathFn)) {
-        pathFn = [pathFn]
+      if (!Array.isArray(pathFns)) {
+        pathFns = [pathFns]
       }
 
-      pathFn.forEach(fn => fn(params, query))
+      pathFns.forEach(fn => {
+        // 黑名单优先
+        blackPaths.forEach(blackPath => {
+          const blackPathReg = pathToRegexp(blackPath.slice(1))
+
+          if (blackPathReg.test(pathname)) {
+            let blackFns = router[blackPath]
+
+            if (!Array.isArray(blackFns)) {
+              blackFns = [blackFns]
+            }
+
+            if (blackFns.some(R.identical(fn))) {
+              return
+            }
+          }
+
+          fn(params, query)
+        })
+      })
     }
-  }
+  })
 }

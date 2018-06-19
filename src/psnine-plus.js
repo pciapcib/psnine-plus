@@ -9,6 +9,7 @@ import {
 // 2. '/page/:id': [service1, service2]
 const router = {
   '/:page*': hoverPSNCard,
+  '!/psnid/:psnId': hoverPSNCard,
   '/psngame/:gameId': filterTrophies
 }
 

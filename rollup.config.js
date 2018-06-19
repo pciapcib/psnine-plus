@@ -24,7 +24,8 @@ module.exports = {
         'ramda'
       ],
       babelrc: false,
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      runtimeHelpers: true
     })
   ]
 }
