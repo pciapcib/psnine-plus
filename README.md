@@ -23,24 +23,24 @@ Psnine 浏览器扩展，增强 Psnine 的浏览体验。
 
 ## 安装
 
-从各浏览器的应用商店或应用中心安装本扩展：
+从各浏览器的应用商店或应用中心安装本扩展：
 
 - [Chrome Extension](https://chrome.google.com/webstore/detail/psnine-plus/lpalganafhechhdedehdbaenciakmgka)
 
 - [Firefox Addon](https://addons.mozilla.org/zh-CN/firefox/addon/psnine-plus)
 
-然后进入 [Psnine](https://psnine.com) 查看效果。
+然后进入 [Psnine](https://psnine.com) 查看效果。
 
 ### 手动安装
 
-#### 下载 crx 文件
+#### 下载 `psnine-plus.crx`
 
 从 [Releases](https://github.com/pciapcib/psnine-plus/releases) 下载最新版本。
 
 #### 手动打包
 
 ``` bash
-# 克隆本仓库
+# 克隆本仓库
 $ git clone https://github.com/pciapcib/psnine-plus.git
 
 # 安装依赖
@@ -50,18 +50,20 @@ $ npm install
 $ npm run build
 ```
 
-将下载或手动打包后的 crx 文件拖入浏览器的扩展管理界面，目前已支持的浏览器的有：
+将下载或手动打包后的 `psnine-plus.crx` 拖入浏览器的扩展管理界面，目前已支持的浏览器的有：
 
 - Chrome 
 - Firefox
 - Opera
 - QQ 浏览
 
-其它浏览器可自行测试，理论上使用 Chromium 内核的浏览器均支持
+其它浏览器可自行测试，理论上使用 Chromium 内核的浏览器均支持
 
 ## 贡献
 
-如果发现了 Bug 或其它问题，以及需要增加新功能时，请在本仓库新建 `issue`，提交 pr 前请务必进行代码风格检查。
+如果本扩展对您在浏览 Psnine 时有帮助，可以 `star` 本项目以示支持。
+
+如果发现了 Bug 或其它问题，以及需要增加新功能时，请在本仓库新建 `issue`，提交 pr 前请务必进行代码风格检查。
 
 非开发者也可联系邮箱 `pciapcib@163.com`。
 
