@@ -5,8 +5,9 @@ import qs from 'qs'
 export default function controller (router, pathname, search) {
   // 区分黑白路径
   const paths = R.keys(router)
-  const whitePaths = R.reject(R.startsWith('!'), paths)
-  const blackPaths = R.filter(R.startsWith('!'), paths)
+  const isBlackPath = R.startsWith('!')
+  const whitePaths = R.reject(isBlackPath, paths)
+  const blackPaths = R.filter(isBlackPath, paths)
 
   whitePaths.forEach(whitePath => {
     const paramNames = []
