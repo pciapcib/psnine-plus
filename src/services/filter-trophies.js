@@ -7,7 +7,7 @@ const filterMap = {
   all: '全部',
   earned: '已获得',
   missing: '未获得',
-  tips: '有tips'
+  tips: '有Tips'
 }
 
 function makeFilterItem (type, query, filter) {
@@ -54,7 +54,7 @@ function addPlaceHolder ($trophies, $content, img, msg) {
     const $placeholder = $(`
       <tr>
         <td valign="top" align="center">
-        <img src="//photo.${PSNINE_DOMAIN}/face/${img}.gif" style="padding: 10px 0;">
+        <img src="http://photo.${PSNINE_DOMAIN}/face/${img}.gif" style="padding: 10px 0;">
         <p>${msg}</p>
         </td>
       </tr>
@@ -64,7 +64,7 @@ function addPlaceHolder ($trophies, $content, img, msg) {
   }
 }
 
-// 过滤游戏页面奖杯
+// 筛选游戏页面奖杯
 export default function filterTrophies (params, query) {
   const $main = $('.mt40 .main')
 
@@ -80,12 +80,12 @@ export default function filterTrophies (params, query) {
   const $filterTitle = $('<li><em>筛选</em></li>')
   const $filterDropdown = makeFilter(query)
 
-  $dropmenu.append($filterTitle, $filterDropdown)
-
   const $content = $dropmenu.next().find('tbody')
 
   const filter = query.filter || 'all'
-  const ob = query.ob || 'trophyid'
+  const sort = query.ob || 'trophyid'
+
+  $dropmenu.append($filterTitle, $filterDropdown)
 
   // 非用户入口的游戏页面不显示奖杯筛选
   switch (filter) {
@@ -118,7 +118,7 @@ export default function filterTrophies (params, query) {
   // 只在默认排序下进行游戏和 DLC 信息的判断，
   // 游戏本体或某个 DLC 中的所有奖杯都隐藏时，
   // 则隐藏对应的横幅信息
-  if (ob === 'trophyid') {
+  if (sort === 'trophyid') {
     const $banners = $main.find('table.list tr:first-child')
 
     $banners.each(function (index) {
