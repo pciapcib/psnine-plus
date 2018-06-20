@@ -1,6 +1,6 @@
 # Psnine Plus
 
-> Tiny extension for Psnine
+> Tiny browser extension for Psnine
 
 Psnine 浏览器扩展，增强 Psnine 的浏览体验。
 
@@ -33,6 +33,8 @@ Psnine 浏览器扩展，增强 Psnine 的浏览体验。
 
 ### 手动安装
 
+在 Chrome 中手动安装扩展前，需要在扩展管理界面打开开发者模式。
+
 #### 下载 `psnine-plus.crx`
 
 从 [Releases](https://github.com/pciapcib/psnine-plus/releases) 下载最新版本。
@@ -57,7 +59,7 @@ $ npm run build
 - Opera
 - QQ 浏览
 
-其它浏览器可自行测试，理论上使用 Chromium 内核的浏览器均支持
+其它浏览器可自行测试，理论上使用 Chromium 内核的浏览器均支持。
 
 ## 贡献
 
