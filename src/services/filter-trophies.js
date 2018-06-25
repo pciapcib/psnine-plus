@@ -87,9 +87,9 @@ export default function filterTrophies (params, query) {
 
   $dropmenu.append($filterTitle, $filterDropdown)
 
-  // 非用户入口的游戏页面不显示奖杯筛选
   switch (filter) {
     case 'earned':
+    // 非用户入口的游戏页面不显示已获得奖杯筛选
       if (!query.psnid) return
 
       $missing.hide()
@@ -99,6 +99,7 @@ export default function filterTrophies (params, query) {
       break
 
     case 'missing':
+      // 非用户入口的游戏页面不显示未获得奖杯筛选
       if (!query.psnid) return
 
       $earned.hide()
@@ -121,7 +122,7 @@ export default function filterTrophies (params, query) {
   if (sort === 'trophyid') {
     const $banners = $main.find('table.list tr:first-child')
 
-    $banners.each(function (index) {
+    $banners.each(function () {
       const $this = $(this)
       const $dlcNum = $this.parents('.box').prev('.hd')
 

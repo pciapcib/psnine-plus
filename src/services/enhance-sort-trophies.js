@@ -19,25 +19,27 @@ function makeSortItem (type, query, sort) {
 }
 
 function makeSort (query) {
+  // 非用户入口的游戏页面不显示奖杯获得日排序
+  const validSortMap = query.psnid ? sortMap : R.omit(['date'])(sortMap)
   const sort = query.ob || 'trophyid'
 
   const getFilterItem = type => makeSortItem(type, query, sort)
-  const sortItems = R.pipe(R.keys, R.map(getFilterItem))(sortMap)
+  const sortItems = R.pipe(R.keys, R.map(getFilterItem))(validSortMap)
 
   return sortItems
 }
 
-function getTrophyDatetime (el) {
+function getTrophyTime (el) {
   const $date = $(el).find('td:eq(2) em.alert-success')
 
   if ($date.length === 0) return 0
 
   const year = $date.attr('tips').slice(0, 4)
-  const datetime = $date.html().trim().replace('-', '/').replace('<br>', ' ')
+  const time = $date.html().trim().replace('-', '/').replace('<br>', ' ')
 
-  const trophyDatetime = new Date(`${year}/${datetime}`).getTime()
+  const trophyTime = new Date(`${year}/${time}`).getTime()
 
-  return trophyDatetime
+  return trophyTime
 }
 
 function getTrophyId (el) {
@@ -73,12 +75,15 @@ export default function enhanceSortTrophies (params, query) {
 
   switch (sort) {
     case 'date':
+      // 非用户入口的游戏页面不显示奖杯获得日排序
+      if (!query.psnid) return
+
       $useless.remove()
       $content.empty()
 
       // 奖杯获得日降序、奖杯 ID 升序
       $trophies.sort((a, b) => {
-        return getTrophyDatetime(b) - getTrophyDatetime(a) ||
+        return getTrophyTime(b) - getTrophyTime(a) ||
           getTrophyId(a) - getTrophyId(b)
       })
 

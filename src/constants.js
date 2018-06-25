@@ -1,1 +1,2 @@
-export const PSNINE_DOMAIN = window.location.host
+export const PSNINE_DOMAIN = window.location.host.replace('www.', '')
+

@@ -60,10 +60,14 @@ $ npm run build
 
 将下载或手动打包后的 `psnine-plus.crx` 拖入浏览器的扩展管理界面，目前已支持的浏览器的有：
 
-- Chrome 
+- Chrome
 - Firefox
 - Opera
-- QQ 浏览
+- Edge(开发者模式)
+- QQ 浏览器
+- 百度浏览器
+- 360 浏览器
+- 搜狗浏览器(开发者模式)
 
 其它浏览器可自行测试，理论上使用 Chromium 内核的浏览器均支持。
 
