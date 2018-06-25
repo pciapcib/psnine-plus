@@ -8,6 +8,7 @@ import path from 'path'
 import fs from 'fs'
 import os from 'os'
 
+import rollupConfig from './rollup.config'
 import pkg from './package.json'
 
 const $ = loadPlugins()
@@ -21,11 +22,11 @@ gulp.task('clean', () => {
 })
 
 gulp.task('dev', cb => {
-  $.runSequence('clean', 'scripts', 'styles', 'chrome', cb)
+  $.runSequence('clean', 'scripts', 'styles', 'pages', 'chrome', cb)
 })
 
 gulp.task('build', cb => {
-  $.runSequence('clean', 'scripts', 'styles', 'chrome', 'opera', 'firefox', cb)
+  $.runSequence('clean', 'scripts', 'styles', 'pages', 'chrome', 'opera', 'firefox', cb)
 })
 
 // development
@@ -38,12 +39,23 @@ gulp.task('dist', ['build'], cb => {
   $.runSequence('chrome:crx', 'chrome:zip', 'firefox:zip', 'opera:nex', 'psnine-plus:crx', cb)
 })
 
-gulp.task('styles', () => {
-  return pipe(`${src}/psnine-plus.styl`, $.plumber(), $.stylus(), $.postcss(), dest)
+gulp.task('scripts', () => {
+  return merge2(
+    rollup(rollupConfig('./src/psnine-plus.js')).on('error', $.util.log)
+      .pipe(source('psnine-plus.js'))
+      .pipe(gulp.dest(dest)),
+    rollup(rollupConfig('./src/popup/popup.js')).on('error', $.util.log)
+      .pipe(source('popup/popup.js'))
+      .pipe(gulp.dest(dest))
+  )
 })
 
-gulp.task('scripts', () => {
-  return rollup('./rollup.config.js').on('error', $.util.log).pipe(source('psnine-plus.js')).pipe(gulp.dest(dest))
+gulp.task('styles', () => {
+  return pipe(`${src}/**/*.styl`, $.plumber(), $.stylus(), $.postcss(), dest)
+})
+
+gulp.task('pages', () => {
+  return pipe(`${src}/**/*.pug`, $.plumber(), $.pug(), dest)
 })
 
 // Chrome
@@ -52,10 +64,13 @@ gulp.task('chrome', () => {
     pipe(`${dest}/psnine-plus.js`, chromeDest),
     pipe(`${dest}/psnine-plus.css`, chromeDest),
 
+    pipe(copyPopup(), `${chromeDest}/popup`),
     pipe(copyIcons(), `${chromeDest}/icons`),
-    pipe(copyScripts(), chromeDest),
+    pipe(copyAssets(), chromeDest),
 
-    pipe(`${src}/config/chrome/background.js`, $.plumber(), $.babel(), chromeDest),
+    // pipe(`${src}/config/chrome/background.js`, $.plumber(), $.babel(), chromeDest),
+    rollup(rollupConfig(`${src}/config/chrome/background.js`)).on('error', $.util.log)
+      .pipe(source('chrome/background.js')).pipe(gulp.dest(dest)),
     pipe(
       `${src}/config/chrome/manifest.json`,
       $.replace('__VERSION__', getVersion()),
@@ -85,8 +100,9 @@ gulp.task('firefox', () => {
     pipe(`${dest}/psnine-plus.js`, firefoxDest),
     pipe(`${dest}/psnine-plus.css`, firefoxDest),
 
+    pipe(copyPopup(), `${firefoxDest}/popup`),
     pipe(copyIcons(), `${firefoxDest}/icons`),
-    pipe(copyScripts(), firefoxDest),
+    pipe(copyAssets(), firefoxDest),
 
     pipe(
       `${src}/config/firefox/manifest.json`,
@@ -116,16 +132,21 @@ gulp.task('psnine-plus:crx', () => {
 })
 
 // Helpers
-function copyScripts () {
+function copyAssets () {
   return [
     './node_modules/jquery/dist/jquery.min.js',
     './node_modules/tooltipster/dist/js/tooltipster.bundle.min.js',
-    './node_modules/tooltipster/dist/css/tooltipster.bundle.min.css'
+    './node_modules/tooltipster/dist/css/tooltipster.bundle.min.css',
+    './node_modules/preact/dist/preact.min.js'
   ]
 }
 
 function copyIcons () {
   return './icons/**/*'
+}
+
+function copyPopup () {
+  return `${dest}/popup/**/*`
 }
 
 function getVersion () {

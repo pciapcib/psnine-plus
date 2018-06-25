@@ -10,13 +10,12 @@
   },
   "permissions": [
     "tabs",
-    "*://psnine.com/*",
+    "storage",
     "*://*.psnine.com/*"
   ],
   "browser_action": {
-    "default_icon": {
-      "19": "icons/alu.png"
-    },
+    "default_icon": "icons/alu.png",
+    "default_popup": "popup/popup.html",
     "default_title": "Psnine Plus"
   },
   "background": {
@@ -26,7 +25,6 @@
   "content_scripts": [
     {
       "matches": [
-        "*://psnine.com/*",
         "*://*.psnine.com/*"
       ],
       "js": [
