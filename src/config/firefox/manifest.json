@@ -10,7 +10,7 @@
   },
   "applications": {
     "gecko": {
-      "id": "pciapcib@163.com"
+      "id": "__ADDON_ID__"
     }
   },
   "permissions": [

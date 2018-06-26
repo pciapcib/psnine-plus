@@ -112,6 +112,7 @@ gulp.task('firefox', () => {
       `${src}/config/firefox/manifest.json`,
       $.replace('__VERSION__', getVersion()),
       $.replace('__DESC__', getDesc()),
+      $.replace('__ADDON_ID__', getAddonId()),
       firefoxDest
     )
   )
@@ -159,6 +160,13 @@ function getVersion () {
 
 function getDesc () {
   return pkg.description
+}
+
+function getAddonId () {
+  const addonIdPath = path.join(os.homedir(), '.psnine-plus.firefox-addon-id')
+  const addonId = fs.readFileSync(addonIdPath)
+
+  return addonId
 }
 
 function pipe (src, ...transforms) {
