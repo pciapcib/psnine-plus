@@ -36,7 +36,9 @@ module.exports = input => {
   }
 
   if (process.env.NODE_ENV === 'production') {
-    rollupConfig.plugins.push(uglify())
+    rollupConfig.plugins.push(uglify({
+      keep_fnames: true
+    }))
   }
 
   return rollupConfig

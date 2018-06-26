@@ -8,6 +8,11 @@
   "icons": {
     "128": "icons/alu.png"
   },
+  "applications": {
+    "gecko": {
+      "id": "pciapcib@163.com"
+    }
+  },
   "permissions": [
     "tabs",
     "storage",
@@ -17,6 +22,10 @@
     "default_icon": "icons/alu.png",
     "default_popup": "popup/popup.html",
     "default_title": "Psnine Plus"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
   },
   "content_scripts": [
     {
