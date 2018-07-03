@@ -164,7 +164,7 @@ function getDesc () {
 
 function getAddonId () {
   const addonIdPath = path.join(os.homedir(), '.psnine-plus.firefox-addon-id')
-  const addonId = fs.readFileSync(addonIdPath)
+  const addonId = fs.readFileSync(addonIdPath).toString().replace('\n', '')
 
   return addonId
 }
