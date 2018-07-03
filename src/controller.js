@@ -40,7 +40,7 @@ export default function controller (router, config, pathname, search) {
             if (blackFns.some(R.identical(fn))) return
           }
 
-          fn(params, query)
+          fn(config, params, query)
         })
       })
     }

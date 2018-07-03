@@ -27,6 +27,7 @@
       "matches": [
         "*://*.psnine.com/*"
       ],
+      "run_at": "document_start",
       "js": [
         "./jquery.min.js",
         "./tooltipster.bundle.min.js",

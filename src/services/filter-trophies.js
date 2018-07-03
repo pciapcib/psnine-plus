@@ -65,7 +65,7 @@ function addPlaceHolder ($trophies, $content, img, msg) {
 }
 
 // 筛选游戏页面奖杯
-export default function filterTrophies (params, query) {
+export default function filterTrophies (config, params, query) {
   const $main = $('.mt40 .main')
 
   const $trophies = $main.find('tr[id]')

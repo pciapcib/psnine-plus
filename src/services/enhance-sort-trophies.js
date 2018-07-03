@@ -47,7 +47,7 @@ function getTrophyId (el) {
 }
 
 // 增强排序游戏页面奖杯
-export default function enhanceSortTrophies (params, query) {
+export default function enhanceSortTrophies (config, params, query) {
   const $main = $('.mt40 .main')
 
   const $useless = $main.find('> *:gt(3)')
