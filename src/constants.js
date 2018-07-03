@@ -10,4 +10,18 @@ export const SERVICES = {
 }
 
 export const DEFAULT_SERVICES = { ...R.map(R.T, SERVICES) }
+
+export const LIST_SERVICES = {
+  blockPSNs: '屏蔽用户',
+  blockTopicKeywords: '屏蔽话题关键字',
+  blockGeneElements: '屏蔽机因元素',
+  blockGeneKeywords: '屏蔽机因关键字'
+}
+
+export const DEFAULT_LIST_SERVICES = {
+  ...R.map(R.T, LIST_SERVICES),
+  ...R.keys(LIST_SERVICES).reduce(
+    (listServices, serviceName) => R.assoc(`${serviceName}List`, [], listServices),
+    {}
+  )
 }

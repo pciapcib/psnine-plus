@@ -1,3 +1,7 @@
+export { default as blockGeneElements } from './block-gene-elements'
+export { default as blockGeneKeywords } from './block-gene-keywords'
+export { default as blockPSNs } from './block-psns'
+export { default as blockTopicKeywords } from './block-topic-keywords'
 export { default as enhanceSortTrophies } from './enhance-sort-trophies'
 export { default as filterTrophies } from './filter-trophies'
 export { default as hoverPSNCard } from './hover-psn-card'

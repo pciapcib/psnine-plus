@@ -2,7 +2,11 @@ import controller from './controller'
 import {
   hoverPSNCard,
   enhanceSortTrophies,
-  filterTrophies
+  filterTrophies,
+  blockPSNs,
+  blockTopicKeywords,
+  blockGeneElements,
+  blockGeneKeywords
 } from './services'
 
 // 根据路由分配功能
@@ -11,9 +15,13 @@ import {
 // 在某页面下不执行某功能
 // 3. '!/page/path': [service]
 const router = {
-  '/:page*': [hoverPSNCard],
+  '/:page*': [hoverPSNCard, blockPSNs],
   '!/psnid/:psnId': [hoverPSNCard],
-  '/psngame/:gameId': [enhanceSortTrophies, filterTrophies]
+  '/': [blockTopicKeywords],
+  '/topic': [blockTopicKeywords],
+  '/psngame/:gameId': [enhanceSortTrophies, filterTrophies],
+  '/psngame/:gameId/topic': [blockTopicKeywords],
+  '/gene': [blockGeneElements, blockGeneKeywords]
 }
 
 $(function () {

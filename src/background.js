@@ -1,4 +1,4 @@
-import { DEFAULT_SERVICES } from './constants'
+import { DEFAULT_SERVICES, DEFAULT_LIST_SERVICES } from './constants'
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status !== 'loading') return
@@ -12,7 +12,8 @@ chrome.runtime.onInstalled.addListener(qwe => {
   chrome.storage.sync.get(null, data => {
     if (data == null) {
       chrome.storage.sync.set({
-        ...DEFAULT_SERVICES
+        ...DEFAULT_SERVICES,
+        ...DEFAULT_LIST_SERVICES
       })
     }
   })
