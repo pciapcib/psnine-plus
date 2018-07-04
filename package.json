@@ -1,6 +1,6 @@
 {
   "name": "psnine-plus",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Tiny browser extension for Psnine",
   "scripts": {
     "start": "npm run dev",

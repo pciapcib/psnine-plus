@@ -6,3 +6,4 @@ package-lock.json
 .idea/
 .cache/
 .DS_Store
+*.zip
