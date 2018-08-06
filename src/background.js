@@ -1,3 +1,4 @@
+import R from 'ramda'
 import { DEFAULT_SERVICES, DEFAULT_LIST_SERVICES } from './constants'
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -8,9 +9,9 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   }
 })
 
-chrome.runtime.onInstalled.addListener(qwe => {
+chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.get(null, data => {
-    if (data == null) {
+    if (R.either(R.isNil, R.isEmpty)(data)) {
       chrome.storage.sync.set({
         ...DEFAULT_SERVICES,
         ...DEFAULT_LIST_SERVICES

@@ -40,7 +40,11 @@ export default function controller (router, config, pathname, search) {
             if (blackFns.some(R.identical(fn))) return
           }
 
-          fn(config, params, query)
+          try {
+            fn(config, params, query)
+          } catch (error) {
+            console.error(error)
+          }
         })
       })
     }
