@@ -1,7 +1,7 @@
 import R from 'ramda'
 
+export const PSNINE_ORIGIN = window.location.origin
 export const PSNINE_HOST = window.location.host
-export const PSNINE_DOMAIN = PSNINE_HOST.replace('www.', '')
 
 export const SERVICES = {
   hoverPSNCard: 'PSN 卡片',

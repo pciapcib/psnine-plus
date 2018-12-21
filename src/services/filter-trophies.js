@@ -1,7 +1,7 @@
 import qs from 'qs'
 import R from 'ramda'
 
-import { PSNINE_DOMAIN } from '../constants'
+import { PSNINE_ORIGIN } from '../constants'
 
 const filterMap = {
   all: '全部',
@@ -54,7 +54,7 @@ function addPlaceHolder ($trophies, $content, img, msg) {
     const $placeholder = $(`
       <tr>
         <td valign="top" align="center">
-        <img src="http://photo.${PSNINE_DOMAIN}/face/${img}.gif" style="padding: 10px 0;">
+        <img src="${PSNINE_ORIGIN}/Upload/face/${img}.gif" style="padding: 10px 0;">
         <p>${msg}</p>
         </td>
       </tr>

@@ -16,7 +16,8 @@
   "permissions": [
     "tabs",
     "storage",
-    "*://*.psnine.com/*"
+    "*://*.psnine.com/*",
+    "*://*.d7vg.com/*"
   ],
   "browser_action": {
     "default_icon": "icons/alu.png",
@@ -30,7 +31,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.psnine.com/*"
+        "*://*.psnine.com/*",
+        "*://*.d7vg.com/*"
       ],
       "run_at": "document_start",
       "js": [

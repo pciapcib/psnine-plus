@@ -34,10 +34,10 @@ chrome.runtime.onMessage.addListener(({ type, data }) => {
 
     case 'setConfig':
       chrome.storage.sync.set(data, () => {
-        chrome.tabs.query({
-          url: '*://*.psnine.com/*'
-        }, tabs => {
-          tabs.forEach(tab => chrome.tabs.reload(tab.id))
+        ['*://*.psnine.com/*', '*://*.d7vg.com/*'].forEach(url => {
+          chrome.tabs.query({ url }, tabs => {
+            tabs.forEach(tab => chrome.tabs.reload(tab.id))
+          })
         })
       })
   }
