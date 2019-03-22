@@ -6,7 +6,8 @@ export const PSNINE_HOST = window.location.host
 export const SERVICES = {
   hoverPSNCard: 'PSN 卡片',
   filterTrophies: '奖杯筛选',
-  enhanceSortTrophies: '奖杯排序增强'
+  enhanceSortTrophies: '奖杯排序增强',
+  blockPlatinumBooking: '屏蔽白金预定'
 }
 
 export const DEFAULT_SERVICES = { ...R.map(R.T, SERVICES) }

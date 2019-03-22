@@ -6,7 +6,8 @@ import {
   blockPSNs,
   blockTopicKeywords,
   blockGeneElements,
-  blockGeneKeywords
+  blockGeneKeywords,
+  blockPlatinumBooking
 } from './services'
 
 // 根据路由分配功能
@@ -19,9 +20,10 @@ const router = {
   '!/psnid/:psnId': [hoverPSNCard],
   '/': [blockTopicKeywords],
   '/topic': [blockTopicKeywords],
-  '/psngame/:gameId': [enhanceSortTrophies, filterTrophies],
+  '/psngame/:gameId': [enhanceSortTrophies, filterTrophies, blockPlatinumBooking],
   '/psngame/:gameId/topic': [blockTopicKeywords],
-  '/gene': [blockGeneElements, blockGeneKeywords]
+  '/gene': [blockGeneElements, blockGeneKeywords],
+  '/trophy/:trophyId': [blockPlatinumBooking]
 }
 
 $(function () {
